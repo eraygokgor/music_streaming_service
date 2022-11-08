@@ -50,11 +50,13 @@ private: // DO NOT CHANGE THIS PART.
 template<class T>
 LinkedList<T>::LinkedList() {
     /* TODO */
+    head = new Node<T>(T(), NULL, head);;
 }
 
 template<class T>
 LinkedList<T>::LinkedList(const LinkedList<T> &obj) {
     /* TODO */
+
 }
 
 template<class T>
@@ -65,11 +67,13 @@ LinkedList<T>::~LinkedList() {
 template<class T>
 int LinkedList<T>::getSize() const {
     /* TODO */
+    return size;
 }
 
 template<class T>
 bool LinkedList<T>::isEmpty() const {
     /* TODO */
+    return head->prev == NULL;
 }
 
 template<class T>
