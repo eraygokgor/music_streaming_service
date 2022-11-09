@@ -5,6 +5,9 @@
 int main() {
     LinkedList<int> llist;
 
+    std::cout<<llist.isEmpty()<<std::endl;
+
+    /*
     llist.print();
 
     llist.insertAtTheEnd(3);
@@ -12,6 +15,6 @@ int main() {
     llist.insertAfterNode(1, llist.getNode(2));
 
     llist.print();
-
+    */
     return 0;
 }
