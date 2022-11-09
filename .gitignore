@@ -1,1 +1,5 @@
 .idea/*
+*.exe
+*.dSYM
+*.o
+.vscode/
