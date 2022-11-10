@@ -192,6 +192,7 @@ void LinkedList<T>::insertAfterNode(const T &data, Node<T> *node) {
         newNode->prev = node;
         newNode->next = afterNode;
         afterNode->prev = newNode;
+        
         size++;
     }
 
