@@ -155,11 +155,30 @@ void LinkedList<T>::insertAtTheFront(const T &data) {
 template<class T>
 void LinkedList<T>::insertAtTheEnd(const T &data) {
     /* TODO */
+    if (isEmpty()){
+        Node<T> *newNode = new Node<T>(data, NULL, NULL);
+        head->next = newNode;
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        size++;
+    }
+    else {
+        Node<T> *firstNode = this->getFirstNode();
+        Node<T> *lastNode = this->getLastNode();
+        Node<T> *newNode = new Node<T>(data, NULL, NULL);
+        newNode->next = firstNode;
+        firstNode->prev = newNode;
+        newNode->prev = lastNode;
+        lastNode->next = newNode;
+        size++;
+    }
 }
 
 template<class T>
 void LinkedList<T>::insertAfterNode(const T &data, Node<T> *node) {
     /* TODO */
+    Node<T> *newNode = new Node<T>(data, NULL, NULL);
+    
 }
 
 template<class T>
