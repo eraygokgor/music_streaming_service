@@ -118,7 +118,7 @@ Node<T> *LinkedList<T>::getNode(const T &data) const {
 template<class T>
 Node<T> *LinkedList<T>::getNodeAtIndex(int index) const {
     /* TODO */
-    Node<T>* p = getFirstNode();
+    Node<T> *p = this->getFirstNode();
 
     if (size-1 < index){
         return NULL;
