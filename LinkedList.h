@@ -177,8 +177,24 @@ void LinkedList<T>::insertAtTheEnd(const T &data) {
 template<class T>
 void LinkedList<T>::insertAfterNode(const T &data, Node<T> *node) {
     /* TODO */
-    Node<T> *newNode = new Node<T>(data, NULL, NULL);
-    
+    if (isEmpty()){
+        Node<T> *newNode = new Node<T>(data, NULL, NULL);
+        head->next = newNode;
+        newNode->next = newNode;
+        newNode->prev = newNode;
+        size++;
+    }
+    else {
+        Node<T> *newNode = new Node<T>(data, NULL, NULL);
+        Node<T> *afterNode = node->next;
+
+        node->next = newNode;
+        newNode->prev = node;
+        newNode->next = afterNode;
+        afterNode->prev = newNode;
+        size++;
+    }
+
 }
 
 template<class T>
