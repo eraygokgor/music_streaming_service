@@ -104,15 +104,15 @@ Node<T> *LinkedList<T>::getLastNode() const {
 template<class T>
 Node<T> *LinkedList<T>::getNode(const T &data) const {
     /* TODO */
-    Node<T>* p = getFirstNode();
-    int iterator = size;
-    while (p && iterator--){
-        if (p->data ==data){
+    Node<T> *p = this->getFirstNode();
+    int iterator = size+1;
+    while (!isEmpty() && iterator--){
+        if (p->data==data){
             return p;
         }
         p = p->next;
-    return NULL;
     }
+    return NULL;
 }
 
 template<class T>
