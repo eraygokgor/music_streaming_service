@@ -74,7 +74,7 @@ int LinkedList<T>::getSize() const {
 template<class T>
 bool LinkedList<T>::isEmpty() const {
     /* TODO */
-    return size==0;
+    return (head->next==NULL) & (head->prev==NULL);
 }
 
 template<class T>
@@ -222,16 +222,23 @@ template<class T>
 void LinkedList<T>::removeNode(Node<T> *node) {
     /* TODO */
     if (this->contains(node)){
-        Node<T> *prevNode = node->prev;
-        Node<T> *nextNode = node->next;
 
-        if(head->next == node){
-            head->next = nextNode;
+        if (size>1){
+            Node<T> *prevNode = node->prev;
+            Node<T> *nextNode = node->next;
+
+            if(head->next == node){
+                head->next = nextNode;
+            }
+
+            prevNode->next = nextNode;
+            nextNode->prev = prevNode;
         }
-
-        prevNode->next = nextNode;
-        nextNode->prev = prevNode;
-
+        else {
+            if(head->next == node){
+                head->next = NULL;
+            }
+        }
         delete node;
         size--;
     }
