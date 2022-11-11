@@ -74,7 +74,7 @@ int LinkedList<T>::getSize() const {
 template<class T>
 bool LinkedList<T>::isEmpty() const {
     /* TODO */
-    return (head->next == NULL) && (head->prev == NULL);
+    return size==0;
 }
 
 template<class T>
@@ -221,7 +221,6 @@ void LinkedList<T>::insertAsEveryKthNode(const T &data, int k) {
 template<class T>
 void LinkedList<T>::removeNode(Node<T> *node) {
     /* TODO */
-
     if (this->contains(node)){
         Node<T> *prevNode = node->prev;
         Node<T> *nextNode = node->next;
@@ -242,13 +241,21 @@ void LinkedList<T>::removeNode(Node<T> *node) {
 template<class T>
 void LinkedList<T>::removeNode(const T &data) {
     /* TODO */
-    Node<int>* deleted=this->getNodeAtIndex(data);
-    this->removeNode(deleted);
+    while(this->getNode(data)){
+        Node<int>* deleted=this->getNode(data);
+        this->removeNode(deleted);
+    }
 }
 
 template<class T>
 void LinkedList<T>::removeAllNodes() {
     /* TODO */
+    while(this->getFirstNode()){
+        Node<int>* deleted=this->getFirstNode();
+        this->removeNode(deleted);
+    }
+    size=0;
+    head->next=NULL;
 }
 
 template<class T>
