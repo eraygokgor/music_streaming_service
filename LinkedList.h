@@ -80,6 +80,15 @@ bool LinkedList<T>::isEmpty() const {
 template<class T>
 bool LinkedList<T>::contains(Node<T> *node) const {
     /* TODO */
+    int iterator = size+1;
+    Node<T> *p = this->getFirstNode();
+    while (iterator--){
+        if (p==node){
+            return true;
+        }
+        p = p->next;
+    }
+    return false;
 }
 
 template<class T>
@@ -212,11 +221,29 @@ void LinkedList<T>::insertAsEveryKthNode(const T &data, int k) {
 template<class T>
 void LinkedList<T>::removeNode(Node<T> *node) {
     /* TODO */
+
+    if (this->contains(node)){
+        Node<T> *prevNode = node->prev;
+        Node<T> *nextNode = node->next;
+
+        if(head->next == node){
+            head->next = nextNode;
+        }
+
+        prevNode->next = nextNode;
+        nextNode->prev = prevNode;
+
+        delete node;
+        size--;
+    }
+
 }
 
 template<class T>
 void LinkedList<T>::removeNode(const T &data) {
     /* TODO */
+    Node<int>* deleted=this->getNodeAtIndex(data);
+    this->removeNode(deleted);
 }
 
 template<class T>
