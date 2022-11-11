@@ -192,7 +192,7 @@ void LinkedList<T>::insertAfterNode(const T &data, Node<T> *node) {
         newNode->prev = node;
         newNode->next = afterNode;
         afterNode->prev = newNode;
-        
+
         size++;
     }
 
@@ -201,6 +201,12 @@ void LinkedList<T>::insertAfterNode(const T &data, Node<T> *node) {
 template<class T>
 void LinkedList<T>::insertAsEveryKthNode(const T &data, int k) {
     /* TODO */
+    if (k>1){
+        for (int i=1; i*k-2<size; i++){
+            Node<T> *p = this->getNodeAtIndex(k*i-2);
+            this->insertAfterNode(data, p);
+        }
+    }
 }
 
 template<class T>
