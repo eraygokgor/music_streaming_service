@@ -279,31 +279,48 @@ void LinkedList<T>::removeEveryKthNode(int k) {
 template<class T>
 void LinkedList<T>::swap(Node<T> *node1, Node<T> *node2) {
     /* TODO */
-    if(this->contains(node1)&&this->contains(node2)){
-        node1->prev->next = node1->next;
-        node1->next->prev = node1->prev;
-        node1->next=node1->prev;
+    if(this->contains(node1)&&this->contains(node2)&&node1!=node2){
+        if (node1==this->getFirstNode() && node2==this->getLastNode()){
+            node1->prev = node1->next;
+            node2->next = node2->prev;
 
-        node2->prev->next = node2->next;
-        node2->next->prev = node2->prev;
-        node2->next = node2->prev;
+            node1->prev = node2->prev;
+            node2->next = node1->next;
 
-        node1->prev = node2->prev;
-        node2->prev = node1->next;
+            node1->prev->next = node1;
+            node2->next->prev = node2;
 
-        node1->next = node1->prev;
-        node2->next = node2->prev;
+            node2->prev = node1;
+            node1->next = node2;
 
-        node1->next = node1->next->next;
-        node1->next->prev = node1;
-        node1->prev->next = node1;
-
-        node2->next = node2->next->next;
-        node2->next->prev = node2;      
-        node2->prev->next = node2;
-
-        if(head->next==node1){
             head->next = node2;
+        }
+        else {
+            node1->prev->next = node1->next;
+            node1->next->prev = node1->prev;
+            node1->next=node1->prev;
+
+            node2->prev->next = node2->next;
+            node2->next->prev = node2->prev;
+            node2->next = node2->prev;
+
+            node1->prev = node2->prev;
+            node2->prev = node1->next;
+
+            node1->next = node1->prev;
+            node2->next = node2->prev;
+
+            node1->next = node1->next->next;
+            node1->next->prev = node1;
+            node1->prev->next = node1;
+
+            node2->next = node2->next->next;
+            node2->next->prev = node2;      
+            node2->prev->next = node2;
+
+            if(head->next==node1){
+                head->next = node2;
+            }
         }
     }
 }
@@ -311,6 +328,17 @@ void LinkedList<T>::swap(Node<T> *node1, Node<T> *node2) {
 template<class T>
 void LinkedList<T>::shuffle(int seed) {
     /* TODO */
+    for(int i=0; i<size; i++){
+        int index = (i*i+seed)%size;
+        Node<int> *node1 = this->getNodeAtIndex(i);
+        Node<int> *node2 = this->getNodeAtIndex(index);
+        if (i<index){
+            this->swap(node1, node2);
+        }
+        else {
+            this->swap(node2, node1);
+        }   
+    }
 }
 
 template<class T>
