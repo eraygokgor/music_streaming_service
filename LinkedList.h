@@ -63,8 +63,10 @@ LinkedList<T>::LinkedList(const LinkedList<T> &obj) {
 template<class T>
 LinkedList<T>::~LinkedList() {
     /* TODO */
+    
     this->removeAllNodes();
     delete this->head;
+    
 
 }
 
@@ -377,6 +379,18 @@ void LinkedList<T>::print(bool reverse) const {
 template<class T>
 LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &rhs) {
     /* TODO */
+    this->removeAllNodes();
+    Node<T> *p=rhs.getFirstNode();
+    Node<T> *r=rhs.getLastNode();
+    // Node<T> *start = new Node<T>(p->data, start, start);
+
+    this->insertAtTheEnd(p->data);
+
+    while(p!=r) {
+        p = p->next;
+        this->insertAtTheEnd(p->data);
+    }
+    return *this;
 }
 
 #endif //LINKEDLIST_H
