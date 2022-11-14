@@ -249,7 +249,7 @@ template<class T>
 void LinkedList<T>::removeNode(const T &data) {
     /* TODO */
     while(this->getNode(data)){
-        Node<int>* deleted=this->getNode(data);
+        Node<T>* deleted=this->getNode(data);
         this->removeNode(deleted);
     }
 }
@@ -258,7 +258,7 @@ template<class T>
 void LinkedList<T>::removeAllNodes() {
     /* TODO */
     while(this->getFirstNode()){
-        Node<int>* deleted=this->getFirstNode();
+        Node<T>* deleted=this->getFirstNode();
         this->removeNode(deleted);
     }
     size=0;
@@ -268,11 +268,44 @@ void LinkedList<T>::removeAllNodes() {
 template<class T>
 void LinkedList<T>::removeEveryKthNode(int k) {
     /* TODO */
+    if (k>1){
+        for (int i=1; (k-1)*i<size; i++){
+            Node<T> *p = this->getNodeAtIndex((k-1)*i);
+            this->removeNode(p);
+        }
+    }
 }
 
 template<class T>
 void LinkedList<T>::swap(Node<T> *node1, Node<T> *node2) {
     /* TODO */
+    if(this->contains(node1)&&this->contains(node2)){
+        node1->prev->next = node1->next;
+        node1->next->prev = node1->prev;
+        node1->next=node1->prev;
+
+        node2->prev->next = node2->next;
+        node2->next->prev = node2->prev;
+        node2->next = node2->prev;
+
+        node1->prev = node2->prev;
+        node2->prev = node1->next;
+
+        node1->next = node1->prev;
+        node2->next = node2->prev;
+
+        node1->next = node1->next->next;
+        node1->next->prev = node1;
+        node1->prev->next = node1;
+
+        node2->next = node2->next->next;
+        node2->next->prev = node2;      
+        node2->prev->next = node2;
+
+        if(head->next==node1){
+            head->next = node2;
+        }
+    }
 }
 
 template<class T>
