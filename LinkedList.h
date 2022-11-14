@@ -63,6 +63,9 @@ LinkedList<T>::LinkedList(const LinkedList<T> &obj) {
 template<class T>
 LinkedList<T>::~LinkedList() {
     /* TODO */
+    this->removeAllNodes();
+    delete this->head;
+
 }
 
 template<class T>
