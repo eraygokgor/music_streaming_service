@@ -83,13 +83,15 @@ bool LinkedList<T>::isEmpty() const {
 template<class T>
 bool LinkedList<T>::contains(Node<T> *node) const {
     /* TODO */
-    int iterator = size+1;
-    Node<T> *p = this->getFirstNode();
-    while (iterator--){
-        if (p==node){
-            return true;
+    if (!this->isEmpty()){
+        int iterator = size+1;
+        Node<T> *p = this->getFirstNode();
+        while (iterator--){
+            if (p==node){
+                return true;
+            }
+            p = p->next;
         }
-        p = p->next;
     }
     return false;
 }
