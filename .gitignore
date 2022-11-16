@@ -6,3 +6,4 @@
 Makefile
 linkedlist
 main_linkedlist
+cmake-build-debug/
