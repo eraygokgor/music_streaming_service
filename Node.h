@@ -26,7 +26,6 @@ public:
 
     friend std::ostream &operator<<(std::ostream &os, const Node &node) {
         os << node.data;
-
         return os;
     }
 };
