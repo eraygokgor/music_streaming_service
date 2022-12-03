@@ -59,6 +59,7 @@ LinkedList<T>::LinkedList(const LinkedList<T> &obj) {
     /* TODO */
     head = new Node<T>(T(), NULL, NULL);
     *this = obj;
+    size = 0;
 }
 
 template<class T>
@@ -335,8 +336,8 @@ void LinkedList<T>::shuffle(int seed) {
     /* TODO */
     for(int i=0; i<size; i++){
         int index = (i*i+seed)%size;
-        Node<int> *node1 = this->getNodeAtIndex(i);
-        Node<int> *node2 = this->getNodeAtIndex(index);
+        Node<T> *node1 = this->getNodeAtIndex(i);
+        Node<T> *node2 = this->getNodeAtIndex(index);
         if (i<index){
             this->swap(node1, node2);
         }
