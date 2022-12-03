@@ -36,46 +36,109 @@ void Profile::setPlan(SubscriptionPlan plan) {
 
 void Profile::followProfile(Profile *profile) {
     /* TODO */
+    following.insertAtTheEnd(profile);
 }
 
 void Profile::unfollowProfile(Profile *profile) {
     /* TODO */
+    following.removeNode(profile);
 }
 
 void Profile::createPlaylist(const std::string &playlistName) {
     /* TODO */
+    Playlist newPlaylist(playlistName);
+    playlists.insertAtTheEnd(newPlaylist);
 }
 
 void Profile::deletePlaylist(int playlistId) {
     /* TODO */
+    Node<Playlist> *p = playlists.getFirstNode();
+    while(p){
+        if(p->data.getPlaylistId()==playlistId){
+            playlists.removeNode(p->data);
+        }
+        p = p->next;
+    };
 }
 
 void Profile::addSongToPlaylist(Song *song, int playlistId) {
     /* TODO */
+    Node<Playlist> *p = playlists.getFirstNode();
+    while(p){
+        if(p->data.getPlaylistId() == playlistId){
+            p->data.addSong(song);
+        }
+        p = p->next;
+    }
+
 }
 
 void Profile::deleteSongFromPlaylist(Song *song, int playlistId) {
     /* TODO */
+    Node<Playlist> *p = playlists.getFirstNode();
+    while(p){
+        if(p->data.getPlaylistId() == playlistId){
+            p->data.dropSong(song);
+        }
+        p = p->next;
+    }
 }
 
 Playlist *Profile::getPlaylist(int playlistId) {
     /* TODO */
+    Node<Playlist> *p = playlists.getFirstNode();
+    while(p){
+        if(p->data.getPlaylistId() == playlistId){
+            return &p->data;
+        }
+        p = p->next;
+    }
 }
 
 LinkedList<Playlist *> Profile::getSharedPlaylists() {
     /* TODO */
+    LinkedList<Playlist *> sharedPlaylists;
+    Node<Playlist> *p = playlists.getFirstNode();
+    while(p){
+        if(p->data.isShared()){
+            sharedPlaylists.insertAtTheEnd(&p->data);
+        }
+        p = p->next;
+    }
+    return sharedPlaylists;
 }
 
 void Profile::shufflePlaylist(int playlistId, int seed) {
     /* TODO */
+    Node<Playlist> *p = playlists.getFirstNode();
+    while(p){
+        if(p->data.getPlaylistId() == playlistId){
+            p->data.shuffle(seed);
+        }
+        p = p->next;
+    }
 }
 
 void Profile::sharePlaylist(int playlistId) {
     /* TODO */
+    Node<Playlist> *p = playlists.getFirstNode();
+    while(p){
+        if(p->data.getPlaylistId() == playlistId){
+            p->data.setShared(true);
+        }
+        p = p->next;
+    }
 }
 
 void Profile::unsharePlaylist(int playlistId) {
     /* TODO */
+    Node<Playlist> *p = playlists.getFirstNode();
+    while(p){
+        if(p->data.getPlaylistId() == playlistId){
+            p->data.setShared(false);
+        }
+        p = p->next;
+    }
 }
 
 bool Profile::operator==(const Profile &rhs) const {
