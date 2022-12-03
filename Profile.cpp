@@ -56,6 +56,7 @@ void Profile::deletePlaylist(int playlistId) {
     while(p){
         if(p->data.getPlaylistId()==playlistId){
             playlists.removeNode(p->data);
+            break;
         }
         p = p->next;
     };
@@ -67,6 +68,7 @@ void Profile::addSongToPlaylist(Song *song, int playlistId) {
     while(p){
         if(p->data.getPlaylistId() == playlistId){
             p->data.addSong(song);
+            break;
         }
         p = p->next;
     }
@@ -79,6 +81,7 @@ void Profile::deleteSongFromPlaylist(Song *song, int playlistId) {
     while(p){
         if(p->data.getPlaylistId() == playlistId){
             p->data.dropSong(song);
+            break;
         }
         p = p->next;
     }
@@ -90,6 +93,7 @@ Playlist *Profile::getPlaylist(int playlistId) {
     while(p){
         if(p->data.getPlaylistId() == playlistId){
             return &p->data;
+            break;
         }
         p = p->next;
     }
@@ -102,6 +106,7 @@ LinkedList<Playlist *> Profile::getSharedPlaylists() {
     while(p){
         if(p->data.isShared()){
             sharedPlaylists.insertAtTheEnd(&p->data);
+            break;
         }
         p = p->next;
     }
@@ -114,6 +119,7 @@ void Profile::shufflePlaylist(int playlistId, int seed) {
     while(p){
         if(p->data.getPlaylistId() == playlistId){
             p->data.shuffle(seed);
+            break;
         }
         p = p->next;
     }
@@ -125,6 +131,7 @@ void Profile::sharePlaylist(int playlistId) {
     while(p){
         if(p->data.getPlaylistId() == playlistId){
             p->data.setShared(true);
+            break;
         }
         p = p->next;
     }
@@ -136,6 +143,7 @@ void Profile::unsharePlaylist(int playlistId) {
     while(p){
         if(p->data.getPlaylistId() == playlistId){
             p->data.setShared(false);
+            break;
         }
         p = p->next;
     }
