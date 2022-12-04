@@ -1,3 +1,4 @@
+
 #include "MusicStream.h"
 
 #include <iostream>
@@ -59,6 +60,7 @@ void MusicStream::addSong(const std::string &songName, int songDuration, int alb
     /* TODO */
     Song *newSong = new Song(songName, songDuration);
     songs.insertAtTheEnd(*newSong);
+
     Node<Album> *albumsp = albums.getFirstNode();
     while(albumsp){
         if(albumsp->data.getAlbumId() == albumId){
@@ -67,7 +69,6 @@ void MusicStream::addSong(const std::string &songName, int songDuration, int alb
         }
         albumsp = albumsp->next;
     }
-
 }
 
 void MusicStream::followProfile(const std::string &email1, const std::string &email2) {
@@ -106,11 +107,11 @@ void MusicStream::unfollowProfile(const std::string &email1, const std::string &
                 profile1->unfollowProfile(profile2);
                 LinkedList<Profile *> p2Followers = profile2->getFollowers();
                 p2Followers.removeNode(profile2);
+                }
                 break;
                 profilesp = profilesp->next;
-                }
             }
-            break;
+        break;
         }
         profilesp = profilesp->next;
     }
@@ -152,6 +153,7 @@ void MusicStream::addSongToPlaylist(const std::string &email, int songId, int pl
                     playlistp->addSong(&songsp->data);
                     break;
                 }
+                songsp = songsp->next;
             }
             break;
         }
@@ -171,6 +173,7 @@ void MusicStream::deleteSongFromPlaylist(const std::string &email, int songId, i
                     playlistp->dropSong(&songsp->data);
                     break;
                 }
+                songsp = songsp->next;
             }
             break;
         }
@@ -215,6 +218,7 @@ LinkedList<Playlist *> MusicStream::getSharedPlaylists(const std::string &email)
     /* TODO */
     Node<Profile> *profilesp = profiles.getFirstNode();
     while(profilesp){
+        std::cout<<"ms"<<std::endl;
         if(profilesp->data.getEmail() == email){
             return profilesp->data.getSharedPlaylists();
             break;

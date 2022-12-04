@@ -9,7 +9,7 @@
 
 class MusicStream {
 public: // DO NOT CHANGE THIS PART.
-    MusicStream() {}
+    MusicStream() {};
 
     void addProfile(const std::string &email, const std::string &username, SubscriptionPlan plan);
     void deleteProfile(const std::string &email);
