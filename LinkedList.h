@@ -286,7 +286,10 @@ template<class T>
 void LinkedList<T>::swap(Node<T> *node1, Node<T> *node2) {
     /* TODO */
     if(this->contains(node1)&&this->contains(node2)&&node1!=node2){
-        if (node1==this->getFirstNode() && node2==this->getLastNode()){
+        if(size == 2){
+            head->next = node2;
+        }
+        else if (node1==this->getFirstNode() && node2==this->getLastNode() && size>2){
             node1->prev = node1->next;
             node2->next = node2->prev;
 
@@ -384,12 +387,13 @@ LinkedList<T> &LinkedList<T>::operator=(const LinkedList<T> &rhs) {
     Node<T> *p=rhs.getFirstNode();
     Node<T> *r=rhs.getLastNode();
     // Node<T> *start = new Node<T>(p->data, start, start);
-
-    this->insertAtTheEnd(p->data);
-
-    while(p!=r) {
-        p = p->next;
+    if (p){
         this->insertAtTheEnd(p->data);
+
+        while(p!=r) {
+            p = p->next;
+            this->insertAtTheEnd(p->data);
+        }
     }
     return *this;
 }

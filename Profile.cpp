@@ -1,6 +1,6 @@
 #include "Profile.h"
 
-Profile::Profile(const std::string &email, const std::string &username, SubscriptionPlan plan) {
+    Profile::Profile(const std::string &email, const std::string &username, SubscriptionPlan plan) {
     this->email = email;
     this->username = username;
     this->plan = plan;
@@ -103,12 +103,15 @@ LinkedList<Playlist *> Profile::getSharedPlaylists() {
     /* TODO */
     LinkedList<Playlist *> sharedPlaylists;
     Node<Playlist> *p = playlists.getFirstNode();
+    Node<Playlist> *f = playlists.getFirstNode();
     while(p){
         if(p->data.isShared()){
             sharedPlaylists.insertAtTheEnd(&p->data);
-            break;
         }
         p = p->next;
+        if (f==p){
+            break;
+        }
     }
     return sharedPlaylists;
 }
